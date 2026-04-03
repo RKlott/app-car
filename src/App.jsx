@@ -1,30 +1,39 @@
-
-import React, { Component } from 'react';
-import './App.css'
-import MyCars from './components/MyCars';
+import React, { Component } from "react";
+import "./App.css";
+import MyCars from "./components/MyCars";
 
 class App extends Component {
-
   state = {
-      titre: 'Mon catalogue Voitures',
-      color: 'green'
-    }
+    titre: "Mon catalogue de Voitures",
+    color: "blue",
+  };
 
-  render(){
+  changeTitle = () => {
+    this.setState({
+      titre: "Mon nouveau titre",
+    });
+  };
 
-    
-  return (
-    <>
-    <div className="App">
-      <MyCars 
-      title={this.state.titre} 
-      color={this.state.color}
-      />
-    </div>
-      
-    </>
-  );
+  changeViaParam = (title) => {
+    this.setState({
+      titre: title,
+    });
+  };
+
+  render() {
+    return (
+      <>
+        <div className="App">
+          <MyCars title={this.state.titre} color={this.state.color} />
+
+          <button onClick={this.changeTitle}>Changer le nom en dur</button>
+          <button onClick={() => this.changeViaParam("Titre custom")}>
+            Changer le nom via paramètre
+          </button>
+        </div>
+      </>
+    );
+  }
 }
-}
 
-export default App
+export default App;

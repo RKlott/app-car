@@ -6,9 +6,9 @@ const Car = ({ children, color }) => {
 
   
     return children ? (
-      <Wrapper >
-        <p>Marque: {children} </p>
-        <p>Couleur: {colorInfo} </p>
+      <Wrapper>
+        <p>Marque: {children}</p>
+        <p>Couleur: <span style={{color: colorInfo}}>{colorInfo}</span></p>
       </Wrapper>
     ) : <p>Pas de marque.</p>;
   } 
