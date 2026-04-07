@@ -5,7 +5,11 @@ import Wrapper from "./Wrapper";
 
 class MyCars extends Component {
   state = {
-    cars: ["Ford", "Mercedes", "Peugeot"],
+    cars: [
+      {name: 'Ford', color: 'red', year: 2000},
+      {name: 'Mercedes', color: 'black', year: 2010},
+      {name: 'Peugeot', color: 'green', year: 2018}
+    ],
   };
 
   noCopy = () => {
@@ -16,28 +20,46 @@ class MyCars extends Component {
     e.target.classList.contains('styled') ? e.target.classList.remove('styled') : e.target.classList.add('styled');
   }
 
+  addTenYears = () => {
+    const updatedState = this.state.cars.map((param) => {
+      return param.year -= 10;
+    })
+
+    this.setState({
+      updatedState
+    })
+  }
+
+  getAge = year =>{
+    const now = new Date().getFullYear();
+    const age = now - year;
+
+    let frenchYearStr = "";
+    if(age === 1){
+      frenchYearStr = "an";
+    } else if (age > 1){
+      frenchYearStr = "ans"
+    }
+    return `${age} ${frenchYearStr}`;
+  }
+
+
   render() {
-    return (
+     
+      this.state.cars.map(({name, color, year}, index) => {
+        return (
       <div>
-        <Wrapper>
-          <MyHeader customStyle={this.props.color} >{this.props.title}</MyHeader>
-          <p onCopy={this.noCopy}>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis quam autem consectetur, eligendi culpa quae? Vitae ullam similique sunt odit. Ullam distinctio nihil, quae quasi impedit quaerat voluptatem consequuntur sequi.
-          Perspiciatis, facere quo. Culpa possimus repellat sed laudantium voluptatum a architecto, eaque cupiditate excepturi beatae alias mollitia magni, autem ullam dicta quas ad. Quam laboriosam omnis ipsa cum suscipit? Optio?
-          Placeat, vero rem est accusantium, tenetur eos quae incidunt suscipit sunt modi iure neque odio distinctio totam a, debitis repellendus reprehenderit unde magni sint ad? Voluptas explicabo sunt magni praesentium.</p>
-        </Wrapper>
+        <button>+ 10 ans</button>
+        
+        <div key={index}>
+             <Car nom={name} color={color}> year={year} </Car>
+        </div>
+       
 
-        <h1>Hello React</h1>
-        <Car color="red"> {this.state.cars[0]} </Car>
-        <Car>{this.state.cars[1]}</Car>
-        <Car color="green">{this.state.cars[2]}</Car>
-      
-
-      <MyHeader
-      customStyle= {this.props.color} >
-        Bonjour
-      </MyHeader>
       </div>
     );
+      })
+    
   }
 }
 export default MyCars;
