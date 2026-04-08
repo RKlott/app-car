@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import "./App.css";
-import MyCars from "./components/MyCars";
+import Form from "./components/Form";
+import Maman from "./components/Maman";
+// import MyCars from "./components/MyCars";
 
 class App extends Component {
   state = {
@@ -37,14 +39,15 @@ class App extends Component {
     return (
       <>
         <div className="App">
-          <MyCars title={this.state.titre} color={this.state.color} />
+          <Form />
+          {/* <MyCars title={this.state.titre} color={this.state.color} />
 
           <button onClick={this.changeTitle}>Changer le nom en dur</button>
           <button onClick={() => this.changeViaParam("Titre custom")}>
             Changer le nom via paramètre
           </button>
           <button onClick={this.changeViaBind.bind(this, 'Titre via Bind')}>Via Bind</button>
-          <input type="text" onChange={this.changeViaInput} value={this.state.titre} />
+          <input type="text" onChange={this.changeViaInput} value={this.state.titre} /> */}
         </div>
       </>
     );
